@@ -7,15 +7,32 @@
     <title>Robotics For Everyone</title>
   </head>
   <body>
-    <main>
-      <h1 id="main">Welcome to My Website</h1>
-    </main>
     <script>
       const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.has("model")) {
-      } else {
-        window.location.href = "https://www.roboticsforeveryone.org";
+      if (!urlParams.has("model") && urlParams.get("model") != "") {
+        //window.location.href = "https://www.roboticsforeveryone.org";
       }
+    </script>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+
+    <model-viewer
+      alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      seamless-poster
+      shadow-intensity="1"
+      camera-controls
+      enable-pan
+      id="model"
+    ></model-viewer>
+
+    <script>
+      document
+        .getElementById("model")
+        .setAttribute("src", urlParams.get("model") + ".glb");
     </script>
   </body>
 </html>
