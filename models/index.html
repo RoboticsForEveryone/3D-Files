@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Models | Robotics For Everyone</title>
+  </head>
+  <body>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <h1>hi</h1>
+    <model-viewer
+      alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      seamless-poster
+      shadow-intensity="1"
+      camera-controls
+      enable-pan
+      id="model"
+    ></model-viewer>
+    <h1 id="msg"></h1>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      if (!urlParams.has("model") && urlParams.get("model") != "") {
+        document.getElementById("model").style.visibility = "hidden";
+        document.getElementById("msg").innerHTML = "Model not specified";
+      } else {
+        document
+          .getElementById("model")
+          .setAttribute("src", urlParams.get("model") + ".glb");
+      }
+    </script>
+  </body>
+</html>
