@@ -5,30 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Models | Robotics For Everyone</title>
+    <style>
+      * {
+        --background-color: #e0e0e0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        font-family: monospace;
+        background-color: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      model-viewer {
+        background-color: var(--background-color);
+        --poster-color: var(--background-color);
+        width: 100%;
+        height: 100%;
+      }
+      #msg {
+        font-size: 2em;
+        text-align: center;
+        letter-spacing: 0.1em;
+      }
+    </style>
   </head>
   <body>
     <script
       type="module"
       src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
     ></script>
-    <h1>hi</h1>
     <model-viewer
-      alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      seamless-poster
-      shadow-intensity="1"
       camera-controls
       enable-pan
+      interaction-prompt="none"
       id="model"
     ></model-viewer>
-    <h1 id="msg"></h1>
+    <div id="msg"></h1>
 
     <script>
       const urlParams = new URLSearchParams(window.location.search);
       if (!urlParams.has("model") && urlParams.get("model") != "") {
         document.getElementById("model").style.visibility = "hidden";
-        document.getElementById("msg").innerHTML = "Model not specified";
+        document.getElementById("model").style.display = "none";
+        document.getElementById("msg").innerHTML = "Error: Model not specified";
       } else {
         document
           .getElementById("model")
